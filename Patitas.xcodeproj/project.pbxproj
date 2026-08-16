@@ -1,0 +1,287 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0075F133E80F0B347ED90813 /* AppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFF9530428EFB7B9DE127BA /* AppMain.swift */; };
+		14F7102C3BDE2AEF262DB787 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4BEA4622D777134B34A9A29 /* Assets.xcassets */; };
+		29F62726F95D929D09C46D30 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 8CFF7568D5383C794B806EBD /* www */; };
+		BC6FD6352A55AEFDB76606B6 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 87B18D2E978995139F03C940 /* GoogleMobileAds */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FAE78EF89606FD1EB7646AE2 /* Patitas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Patitas.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFFF9530428EFB7B9DE127BA /* AppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMain.swift; sourceTree = "<group>"; };
+		F4BEA4622D777134B34A9A29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FA88C5D07B96A5EB4E8CA0B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8CFF7568D5383C794B806EBD /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9751A8E9BE44239A9C3F10CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC6FD6352A55AEFDB76606B6 /* GoogleMobileAds in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C590BF5A09F63C40D1A821F8 = {
+			isa = PBXGroup;
+			children = (
+				88ADAF2BB8B0D97C54DDBE4C /* Patitas */,
+				943596043EF4F23871F7B513 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		88ADAF2BB8B0D97C54DDBE4C /* Patitas */ = {
+			isa = PBXGroup;
+			children = (
+				FFFF9530428EFB7B9DE127BA /* AppMain.swift */,
+				F4BEA4622D777134B34A9A29 /* Assets.xcassets */,
+				8CFF7568D5383C794B806EBD /* www */,
+				FA88C5D07B96A5EB4E8CA0B2 /* Info.plist */,
+			);
+			path = "Patitas";
+			sourceTree = "<group>";
+		};
+		943596043EF4F23871F7B513 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAE78EF89606FD1EB7646AE2 /* Patitas.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F0F2BD28C0DE4722DDB16E35 /* Patitas */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 372ED2F36C8D540E98D8E29D /* Build configuration list for PBXNativeTarget "Patitas" */;
+			buildPhases = (
+				699C13C6097F32D0B8505518 /* Sources */,
+				9751A8E9BE44239A9C3F10CC /* Frameworks */,
+				69D2D9B58D7832B723B8CB4A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Patitas";
+			packageProductDependencies = (
+				87B18D2E978995139F03C940 /* GoogleMobileAds */,
+			);
+			productName = "Patitas";
+			productReference = FAE78EF89606FD1EB7646AE2 /* Patitas.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A3893E9A6A1D21B8A58E69A7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					F0F2BD28C0DE4722DDB16E35 = {
+						CreatedOnToolsVersion = 26.0;
+					};
+				};
+			};
+			buildConfigurationList = 011A15EBF62685F6F2B279B9 /* Build configuration list for PBXProject "Patitas" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C590BF5A09F63C40D1A821F8;
+			packageReferences = (
+				2F6C1DBD1FEFD0756F1AFAB0 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
+			productRefGroup = 943596043EF4F23871F7B513 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F0F2BD28C0DE4722DDB16E35 /* Patitas */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		69D2D9B58D7832B723B8CB4A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29F62726F95D929D09C46D30 /* www in Resources */,
+				14F7102C3BDE2AEF262DB787 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		699C13C6097F32D0B8505518 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0075F133E80F0B347ED90813 /* AppMain.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		81BBE6CBA6660A067D49770A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8377FC3DDACB1E385283A5AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		942F83B0C7B34E9D1F0FFD37 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Patitas/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mypetpatitas.beta";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1";
+			};
+			name = Debug;
+		};
+		17B25C0DFA9B288FC5422495 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Patitas/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mypetpatitas.beta";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		011A15EBF62685F6F2B279B9 /* Build configuration list for PBXProject "Patitas" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81BBE6CBA6660A067D49770A /* Debug */,
+				8377FC3DDACB1E385283A5AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		372ED2F36C8D540E98D8E29D /* Build configuration list for PBXNativeTarget "Patitas" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				942F83B0C7B34E9D1F0FFD37 /* Debug */,
+				17B25C0DFA9B288FC5422495 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2F6C1DBD1FEFD0756F1AFAB0 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = versionRange;
+				minimumVersion = 12.0.0;
+				maximumVersion = 99.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		87B18D2E978995139F03C940 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2F6C1DBD1FEFD0756F1AFAB0 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = A3893E9A6A1D21B8A58E69A7 /* Project object */;
+}

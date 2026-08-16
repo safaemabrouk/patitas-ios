@@ -1,0 +1,136 @@
+name: Compilar y subir a App Store Connect
+
+# Se lanza a mano desde la pestaña Actions, o al publicar una etiqueta v1.0, v1.1...
+on:
+  workflow_dispatch:
+    inputs:
+      subir:
+        description: "Subir a App Store Connect (si no, sólo compila)"
+        type: boolean
+        default: true
+  push:
+    tags: ["v*"]
+
+jobs:
+  build:
+    runs-on: macos-26          # imagen con Xcode 26, obligatorio desde abril de 2026
+    timeout-minutes: 45
+
+    env:
+      PROYECTO: "Patitas.xcodeproj"
+      ESQUEMA: "Patitas"
+      BUNDLE_ID: "com.mypetpatitas.beta"
+
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Comprobar la versión de Xcode
+        run: |
+          xcodebuild -version
+          MAJOR=$(xcodebuild -version | head -1 | sed -E 's/Xcode ([0-9]+).*/\1/')
+          if [ "$MAJOR" -lt 26 ]; then
+            echo "::error::Se necesita Xcode 26 o superior. Encontrado: $MAJOR"
+            exit 1
+          fi
+
+      - name: Preparar la clave de App Store Connect
+        env:
+          KEY_ID: ${{ secrets.APPSTORE_KEY_ID }}
+          PRIVATE_KEY: ${{ secrets.APPSTORE_PRIVATE_KEY }}
+        run: |
+          if [ -z "$KEY_ID" ] || [ -z "$PRIVATE_KEY" ]; then
+            echo "::error::Faltan los secretos APPSTORE_KEY_ID o APPSTORE_PRIVATE_KEY"
+            exit 1
+          fi
+          mkdir -p ~/private_keys ~/.appstoreconnect/private_keys
+          echo "$PRIVATE_KEY" > ~/private_keys/AuthKey_${KEY_ID}.p8
+          cp ~/private_keys/AuthKey_${KEY_ID}.p8 ~/.appstoreconnect/private_keys/
+          chmod 600 ~/private_keys/AuthKey_${KEY_ID}.p8
+          echo "KEY_PATH=$HOME/private_keys/AuthKey_${KEY_ID}.p8" >> $GITHUB_ENV
+
+      - name: Numerar la compilación
+        run: |
+          # Cada ejecución sube el número de build; App Store Connect no acepta repetidos.
+          BUILD=$(( ${{ github.run_number }} + 1 ))
+          echo "Número de compilación: $BUILD"
+          /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $BUILD" "Patitas/Info.plist"
+          echo "BUILD_NUMBER=$BUILD" >> $GITHUB_ENV
+
+      - name: Archivar
+        env:
+          KEY_ID: ${{ secrets.APPSTORE_KEY_ID }}
+          ISSUER_ID: ${{ secrets.APPSTORE_ISSUER_ID }}
+          TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          # pipefail es imprescindible: sin él, un fallo de xcodebuild quedaría
+          # tapado por el código de salida de xcbeautify y el flujo daría verde.
+          set -o pipefail
+          bonito() {
+            if command -v xcbeautify >/dev/null 2>&1; then
+              "$@" | xcbeautify --renderer github-actions
+            else
+              "$@"
+            fi
+          }
+          bonito xcodebuild archive \
+            -project "$PROYECTO" \
+            -scheme "$ESQUEMA" \
+            -configuration Release \
+            -destination "generic/platform=iOS" \
+            -archivePath "$RUNNER_TEMP/app.xcarchive" \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath "$KEY_PATH" \
+            -authenticationKeyID "$KEY_ID" \
+            -authenticationKeyIssuerID "$ISSUER_ID" \
+            DEVELOPMENT_TEAM="$TEAM_ID" \
+            CODE_SIGN_STYLE=Automatic
+
+      - name: Exportar el .ipa
+        env:
+          KEY_ID: ${{ secrets.APPSTORE_KEY_ID }}
+          ISSUER_ID: ${{ secrets.APPSTORE_ISSUER_ID }}
+          TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          sed "s/__TEAM_ID__/$TEAM_ID/" ExportOptions.plist > "$RUNNER_TEMP/ExportOptions.plist"
+          xcodebuild -exportArchive \
+            -archivePath "$RUNNER_TEMP/app.xcarchive" \
+            -exportPath "$RUNNER_TEMP/ipa" \
+            -exportOptionsPlist "$RUNNER_TEMP/ExportOptions.plist" \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath "$KEY_PATH" \
+            -authenticationKeyID "$KEY_ID" \
+            -authenticationKeyIssuerID "$ISSUER_ID"
+          ls -lh "$RUNNER_TEMP/ipa"
+
+      - name: Guardar el .ipa como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: ipa-build-${{ env.BUILD_NUMBER }}
+          path: ${{ runner.temp }}/ipa/*.ipa
+          retention-days: 30
+
+      - name: Validar antes de subir
+        if: inputs.subir || startsWith(github.ref, 'refs/tags/')
+        env:
+          KEY_ID: ${{ secrets.APPSTORE_KEY_ID }}
+          ISSUER_ID: ${{ secrets.APPSTORE_ISSUER_ID }}
+        run: |
+          IPA=$(ls "$RUNNER_TEMP"/ipa/*.ipa | head -1)
+          xcrun altool --validate-app -f "$IPA" -t ios \
+            --apiKey "$KEY_ID" --apiIssuer "$ISSUER_ID"
+
+      - name: Subir a App Store Connect
+        if: inputs.subir || startsWith(github.ref, 'refs/tags/')
+        env:
+          KEY_ID: ${{ secrets.APPSTORE_KEY_ID }}
+          ISSUER_ID: ${{ secrets.APPSTORE_ISSUER_ID }}
+        run: |
+          IPA=$(ls "$RUNNER_TEMP"/ipa/*.ipa | head -1)
+          xcrun altool --upload-app -f "$IPA" -t ios \
+            --apiKey "$KEY_ID" --apiIssuer "$ISSUER_ID"
+          echo "Subida completada. La compilación tarda unos minutos en aparecer en TestFlight."
+
+      - name: Borrar la clave
+        if: always()
+        run: rm -rf ~/private_keys ~/.appstoreconnect

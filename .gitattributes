@@ -1,0 +1,4 @@
+# Los archivos del proyecto deben viajar con saltos de línea Unix:
+# el flujo se ejecuta en macOS y bash falla si el YAML lleva saltos de Windows.
+* text=auto eol=lf
+*.png binary
