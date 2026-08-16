@@ -9,7 +9,12 @@
     <key>teamID</key>
     <string>__TEAM_ID__</string>
     <key>signingStyle</key>
-    <string>automatic</string>
+    <string>manual</string>
+    <key>provisioningProfiles</key>
+    <dict>
+        <key>com.mypetpatitas.beta</key>
+        <string>__PROFILE_NAME__</string>
+    </dict>
     <key>uploadSymbols</key>
     <true/>
     <key>manageAppVersionAndBuildNumber</key>
